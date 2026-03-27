@@ -1,0 +1,46 @@
+appId: com.cardselling.agent
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
+
+---
+- launchApp:
+    clearState: true
+
+- runFlow:
+    file: ../../common/login-helper.yaml
+    env:
+      MOBILE_NUMBER: '9000000000'
+      PASSWORD: 'Password100@1'
+
+- tapOn: Request Money
+- assertVisible: Go Back Icon
+- assertVisible: Request Money
+- assertVisible: Sales Representative
+- assertVisible: Enter Request Amount
+- assertVisible: Note
+
+# Input random amount directly
+- tapOn: Enter amount here
+- inputText:
+    text: '{{random(251, 9999)}}'
+
+# Input random note directly
+- tapOn: Write here
+- inputText:
+    text: "{{randomChoice(['Please process this request urgently.','Payment needed by tomorrow.','Kindly approve the amount.','This is for client settlement.','Request for immediate action.'])}}"
+
+- tapOn: Submit Request
+
+- assertVisible: Summary
+- tapOn: Confirm
+
+- assertVisible: Successful!!
+- assertVisible:
+    text: Virtual balance request has been submitted successfully.
+    index: 1
+
+- tapOn: CLOSE
+- assertVisible: Account balance

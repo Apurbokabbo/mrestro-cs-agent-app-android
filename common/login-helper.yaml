@@ -1,0 +1,15 @@
+appId: com.cardselling.agent
+---
+- assertVisible: Login
+- tapOn: Login
+- tapOn: "Enter registered number"
+- inputText: ${MOBILE_NUMBER}
+
+- tapOn: "Enter your password"
+- inputText: ${PASSWORD}
+
+- tapOn:
+    text: "Login"
+    index: 1
+
+- assertVisible: "Account balance"

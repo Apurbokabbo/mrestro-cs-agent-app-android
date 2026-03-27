@@ -1,0 +1,7 @@
+appId: com.cardselling.agent
+
+---
+
+- runFlow: ../flows/login.yaml
+- runFlow: ../flows/signup.yaml
+- runFlow: ../flows/forgot_password.yaml

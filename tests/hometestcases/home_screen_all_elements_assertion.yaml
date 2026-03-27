@@ -1,0 +1,43 @@
+appId: com.cardselling.agent
+
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
+
+---
+- launchApp:
+    clearState: true
+
+- runFlow:
+    file: ../../common/login-helper.yaml
+    env:
+      MOBILE_NUMBER: "9000000000"
+      PASSWORD: "Password100@1"
+
+- assertVisible: Account balance
+- assertVisible: User balance
+- assertVisible: Cash On Hand
+- assertVisible: Total Sales
+- assertVisible: Total Cashback
+- assertVisible:
+    text: Gift Card
+    index: 1
+- assertVisible:
+    text: Top Up
+    index: 1
+- assertVisible:
+    text: Add Money
+    index: 1
+- assertVisible:
+    text: Cash Collection
+    index: 1
+- assertVisible: Home
+- assertVisible: Shop
+- assertVisible: Report
+- assertVisible: History
+- assertVisible: Notification Icon
+- assertVisible: Person Icon
+- runFlow:
+    file: ../../common/teardown.yaml
