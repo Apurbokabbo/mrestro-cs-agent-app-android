@@ -1,6 +1,5 @@
 appId: com.cardselling.agent
 ---
 
-
 - stopApp
 - clearState

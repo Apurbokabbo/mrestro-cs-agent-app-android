@@ -1,12 +1,17 @@
 appId: com.cardselling.agent
 ---
-- assertVisible: Login
-- tapOn: Login
+- runFlow:
+    when:
+      visible: Register
+    commands:
+      - assertVisible: Register
+      - tapOn: "Login"
+
 - tapOn: "Enter registered number"
-- inputText: ${MOBILE_NUMBER}
+- inputText: "${MOBILE_NUMBER}"
 
 - tapOn: "Enter your password"
-- inputText: ${PASSWORD}
+- inputText: "${PASSWORD}"
 
 - tapOn:
     text: "Login"

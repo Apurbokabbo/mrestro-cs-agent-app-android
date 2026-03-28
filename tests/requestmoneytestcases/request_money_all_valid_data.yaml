@@ -18,6 +18,19 @@ tags:
 - tapOn: Request Money
 - assertVisible: Go Back Icon
 - assertVisible: Request Money
+
+- runFlow:
+    when:
+     visible: Cancel Request
+    commands:
+      - tapOn: Cancel Request
+      - assertVisible: Are you sure?
+      - tapOn: CONFIRM
+      - assertVisible: Request Cancelled
+      - tapOn: CLOSE
+      - tapOn: Request Money
+
+
 - assertVisible: Sales Representative
 - assertVisible: Enter Request Amount
 - assertVisible: Note
