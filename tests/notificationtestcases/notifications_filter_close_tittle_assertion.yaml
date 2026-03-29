@@ -1,0 +1,26 @@
+appId: com.cardselling.agent
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    file: ../../common/login-helper.yaml
+    env:
+      MOBILE_NUMBER: "${MOBILE_NUMBER_1}"
+      PASSWORD: "${PASSWORD_1}"
+
+- assertVisible: Notification Icon
+- tapOn: Notification Icon
+
+- assertVisible: Notifications
+- assertVisible: All
+- tapOn: All
+- assertVisible: Filter
+- assertVisible: Close Icon
+- tapOn: Close Icon
+- assertNotVisible: Filter
+- assertVisible: Notifications
+- assertVisible: All
+- tapOn: All
+
+- runFlow:
+    file: ../../common/teardown.yaml

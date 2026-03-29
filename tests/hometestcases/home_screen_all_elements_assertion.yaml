@@ -13,8 +13,8 @@ tags:
 - runFlow:
     file: ../../common/login-helper.yaml
     env:
-      MOBILE_NUMBER: "9000000000"
-      PASSWORD: "Password100@1"
+      MOBILE_NUMBER: "${MOBILE_NUMBER_1}"
+      PASSWORD: "${PASSWORD_1}"
 
 - assertVisible: Account balance
 - assertVisible: User balance

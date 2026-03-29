@@ -8,7 +8,9 @@ appId: com.cardselling.agent
       - tapOn: "Login"
 
 - tapOn: "Enter registered number"
-- inputText: "${MOBILE_NUMBER}"
+- inputText:
+    text: "${MOBILE_NUMBER}"
+    replace: true
 
 - tapOn: "Enter your password"
 - inputText: "${PASSWORD}"
@@ -17,4 +19,10 @@ appId: com.cardselling.agent
     text: "Login"
     index: 1
 
+- runFlow:
+    when:
+      visible: Allow CS Agent to send you notifications?
+    commands:
+      - tapOn: Allow
+      
 - assertVisible: "Account balance"

@@ -12,8 +12,8 @@ tags:
 - runFlow:
     file: ../../common/login-helper.yaml
     env:
-      MOBILE_NUMBER: '9000000000'
-      PASSWORD: 'Password100@1'
+      MOBILE_NUMBER: '${MOBILE_NUMBER_1}'
+      PASSWORD: '${PASSWORD_1}'
 
 - tapOn: Request Money
 - assertVisible: Go Back Icon
@@ -21,7 +21,7 @@ tags:
 
 - runFlow:
     when:
-     visible: Cancel Request
+      visible: Cancel Request
     commands:
       - tapOn: Cancel Request
       - assertVisible: Are you sure?
@@ -29,7 +29,6 @@ tags:
       - assertVisible: Request Cancelled
       - tapOn: CLOSE
       - tapOn: Request Money
-
 
 - assertVisible: Sales Representative
 - assertVisible: Enter Request Amount
@@ -45,6 +44,7 @@ tags:
 - inputText:
     text: "{{randomChoice(['Please process this request urgently.','Payment needed by tomorrow.','Kindly approve the amount.','This is for client settlement.','Request for immediate action.'])}}"
 
+- hideKeyboard
 - tapOn: Submit Request
 
 - assertVisible: Summary
@@ -57,3 +57,6 @@ tags:
 
 - tapOn: CLOSE
 - assertVisible: Account balance
+
+- runFlow:
+    file: ../../common/teardown.yaml
