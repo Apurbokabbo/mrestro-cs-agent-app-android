@@ -1,4 +1,8 @@
 appId: com.cardselling.agent
 ---
-- launchApp:
-    clearState: true
+- runFlow:
+    when:
+      visible: Allow CS Agent to access this device’s location?
+    commands:
+      - assertVisible: While using the app
+      - tapOn: While using the app

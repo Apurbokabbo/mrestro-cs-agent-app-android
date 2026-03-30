@@ -1,4 +1,8 @@
 appId: com.cardselling.agent
+tags:
+  - regression
+  - P3
+  - Functional
 ---
 - launchApp:
     clearState: true

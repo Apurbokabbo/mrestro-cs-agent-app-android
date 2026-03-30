@@ -1,4 +1,8 @@
 appId: com.cardselling.agent
+tags:
+  - regression
+  - P2
+  - Functional
 ---
 - launchApp:
     clearState: true
@@ -10,3 +14,43 @@ appId: com.cardselling.agent
 
 - assertVisible: Notification Icon
 - tapOn: Notification Icon
+- assertVisible: Notifications
+
+- tapOn: All
+- assertVisible: Filter
+- tapOn: General Notification
+- assertVisible: Notifications
+- assertVisible: General Notification
+
+- tapOn: General Notification
+- assertVisible: Filter
+- tapOn: Announcement
+- assertVisible: Notifications
+- assertVisible: Announcement
+
+- tapOn: Announcement
+- assertVisible: Filter
+- tapOn: Promotion
+- assertVisible: Notifications
+- assertVisible: Promotion
+
+- tapOn: Promotion
+- assertVisible: Filter
+- tapOn: Balance Request Approved
+- assertVisible: Notifications
+- assertVisible: Balance Request Approved
+
+- tapOn: Balance Request Approved
+- assertVisible: Filter
+- tapOn: Reconcile Request Approved
+- assertVisible: Notifications
+- assertVisible: Reconcile Request Approved
+
+- tapOn: Reconcile Request Approved
+- assertVisible: Filter
+- tapOn: Account Level Update
+- assertVisible: Notifications
+- assertVisible: Account Level Update
+
+- runFlow:
+    file: ../../common/teardown.yaml

@@ -24,5 +24,11 @@ appId: com.cardselling.agent
       visible: Allow CS Agent to send you notifications?
     commands:
       - tapOn: Allow
-      
+
 - assertVisible: "Account balance"
+
+- runFlow:
+    when:
+      visible: Device Added
+    commands:
+      - tapOn: Device Added
