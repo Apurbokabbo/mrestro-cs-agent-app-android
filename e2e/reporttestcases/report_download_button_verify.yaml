@@ -1,0 +1,59 @@
+appId: com.cardselling.agent
+tags:
+  - smoke
+  - regression
+  - p1
+  - functional
+
+---
+# Launch app with fresh state
+- launchApp:
+    clearState: true
+
+# Login Flow
+- runFlow:
+    file: ../../flows/login_helper.yaml
+    env:
+      MOBILE_NUMBER: ${MOBILE_NUMBER_1}
+      PASSWORD: ${PASSWORD_1}
+
+# Navigate to Report
+- assertVisible: "Report"
+- tapOn: "Report"
+
+# Handle print permission if shown
+- runFlow:
+    when:
+      visible: "Allow CS Agent to find, connect to and determine the relative position of nearby devices?"
+    commands:
+      - runFlow:
+          file: ../../flows/print_permission.yaml
+
+- assertVisible: Export transaction
+- tapOn: Export transaction
+- assertVisible: Your Request has been successfully submitted!
+- assertVisible:
+    text: Email sent successfully to the agent mail
+    index: 1
+- assertVisible: THANK YOU
+- tapOn: THANK YOU
+- assertNotVisible: Your Request has been successfully submitted!
+- tapOn:
+    text: Today
+    index: 1
+- tapOn: This Month
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- tapOn: Export transaction
+- assertVisible: Your Request has been successfully submitted!
+- tapOn: THANK YOU
+
+- runFlow:
+    file: ../../flows/teardown.yaml
+  
+
+
+
+

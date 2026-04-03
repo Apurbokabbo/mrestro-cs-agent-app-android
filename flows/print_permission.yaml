@@ -1,0 +1,6 @@
+appId: com.cardselling.agent
+---
+- assertVisible: Allow CS Agent to find, connect to and determine the relative position of nearby devices?
+- assertVisible: Allow
+- tapOn: Allow
+- assertNotVisible: Allow CS Agent to find, connect to and determine the relative position of nearby devices?
