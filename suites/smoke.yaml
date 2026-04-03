@@ -1,7 +1,7 @@
 appId: com.cardselling.agent
-
 ---
+# Smoke Test Suite - Quick validation of critical flows
 
-- runFlow: ../flows/login.yaml
-- runFlow: ../flows/signup.yaml
-- runFlow: ../flows/forgot_password.yaml
+- runFlow: ../e2e/logintestcases/login_with_valid_credentials.yaml
+- runFlow: ../e2e/hometestcases/home_screen_all_elements_assertion.yaml
+- runFlow: ../e2e/notificationtestcases/notification_screen_navigation_verify.yaml

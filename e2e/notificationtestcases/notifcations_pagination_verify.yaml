@@ -1,30 +1,33 @@
 appId: com.cardselling.agent
 tags:
   - regression
-  - P3
+  - P1
   - Functional
 ---
 - launchApp:
     clearState: true
+
 - runFlow:
-    file: ../../common/login-helper.yaml
+    file: ../../flows/login_helper.yaml
     env:
       MOBILE_NUMBER: "${MOBILE_NUMBER_1}"
       PASSWORD: "${PASSWORD_1}"
 
 - assertVisible: Notification Icon
 - tapOn: Notification Icon
+- swipe: { direction: DOWN }
+- scroll
+- scroll
 
-- assertVisible: Notifications
-- assertVisible: All
 - tapOn: All
 - assertVisible: Filter
-- assertVisible: Close Icon
-- tapOn: Close Icon
-- assertNotVisible: Filter
+- tapOn: General Notification
 - assertVisible: Notifications
-- assertVisible: All
-- tapOn: All
+- assertVisible: General Notification
+- swipe: { direction: DOWN }
+- scroll
+- scroll
+#- scrollUntilVisible: {element : ""}
 
 - runFlow:
-    file: ../../common/teardown.yaml
+    file: ../../flows/teardown.yaml

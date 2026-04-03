@@ -11,7 +11,7 @@ tags:
     clearState: true
 
 - runFlow:
-    file: ../../common/login-helper.yaml
+    file: ../../flows/login_helper.yaml
     env:
       MOBILE_NUMBER: "${MOBILE_NUMBER_1}"
       PASSWORD: "${PASSWORD_1}"
@@ -40,4 +40,4 @@ tags:
 - assertVisible: Notification Icon
 - assertVisible: Person Icon
 - runFlow:
-    file: ../../common/teardown.yaml
+    file: ../../flows/teardown.yaml
