@@ -28,6 +28,7 @@ tags:
     commands:
       - runFlow:
           file: ../../flows/print_permission.yaml
+<<<<<<< HEAD
 
 # close button verify
 - assertVisible:
@@ -150,3 +151,5 @@ tags:
 - assertVisible:
     text: No transactions yet
     optional: true
+=======
+>>>>>>> e1adca6 (report testcases added and folder name update)

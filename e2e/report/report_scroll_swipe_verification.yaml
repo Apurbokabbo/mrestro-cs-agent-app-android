@@ -21,13 +21,18 @@ tags:
 - assertVisible: "Report"
 - tapOn: "Report"
 
+<<<<<<< HEAD
 # Handle permission if shown
+=======
+# Handle print permission if shown
+>>>>>>> e1adca6 (report testcases added and folder name update)
 - runFlow:
     when:
       visible: "Allow CS Agent to find, connect to and determine the relative position of nearby devices?"
     commands:
       - runFlow:
           file: ../../flows/print_permission.yaml
+<<<<<<< HEAD
 
 # Swipe to refresh
 - swipe:
@@ -77,3 +82,5 @@ tags:
 
 - runFlow:
     file: ../../flows/teardown
+=======
+>>>>>>> e1adca6 (report testcases added and folder name update)
