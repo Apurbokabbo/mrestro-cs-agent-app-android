@@ -1,0 +1,201 @@
+appId: com.cardselling.agent
+
+tags:
+  - regression
+  - p4
+  - functional
+
+---
+# Launch app with fresh state
+- launchApp:
+    clearState: true
+
+# Login Flow
+- runFlow:
+    file: ../../flows/login_helper.yaml
+    env:
+      MOBILE_NUMBER: ${MOBILE_NUMBER_1}
+      PASSWORD: ${PASSWORD_1}
+
+# Navigate to Report
+- assertVisible: "Report"
+- tapOn: "Report"
+
+# Handle print permission if shown
+- runFlow:
+    when:
+      visible: "Allow CS Agent to find, connect to and determine the relative position of nearby devices?"
+    commands:
+      - runFlow:
+          file: ../../flows/print_permission.yaml
+
+- tapOn:
+    text: Today
+    index: 1
+- tapOn: This Month
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+
+#bundle purchase
+- assertVisible:
+    text: All
+    index: 1
+- tapOn:
+    text: All
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Bundle Purchase
+- tapOn: Bundle Purchase
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Bundle Purchase
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#cash collection
+
+- tapOn:
+    text: Bundle Purchase
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Cash Collection
+- tapOn: Cash Collection
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Cash Collection
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#refund
+- tapOn:
+    text: Cash Collection
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Refund
+- tapOn: Refund
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Refund
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#add moeny
+- tapOn:
+    text: Refund
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Add money
+- tapOn: Add money
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Add money
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#request money
+- tapOn:
+    text: Add money
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Request Money
+- tapOn: Request Money
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Request Money
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#cashback for account level
+- tapOn:
+    text: Request Money
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Cashback for Account Level
+- tapOn: Cashback for Account Level
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible: Cashback for Account Level
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#instant cashback
+- tapOn: Cashback for Account Level
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: Instant Cashback
+- tapOn: Instant Cashback
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Instant Cashback
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+#all
+- tapOn:
+    text: Instant Cashback
+    index: 1
+- assertVisible: Filter
+- assertVisible: Transactions Type
+- assertVisible: Close Icon
+- assertVisible: All
+- tapOn: All
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: All
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+- runFlow:
+    file: ../../flows/teardown.yaml
