@@ -21,10 +21,59 @@ tags:
 - assertVisible: "Report"
 - tapOn: "Report"
 
-# Handle print permission if shown
+# Handle permission if shown
 - runFlow:
     when:
       visible: "Allow CS Agent to find, connect to and determine the relative position of nearby devices?"
     commands:
       - runFlow:
           file: ../../flows/print_permission.yaml
+
+# Swipe to refresh
+- swipe:
+    start: 50%, 45%
+    end: 50%, 75%
+
+- waitForAnimationToEnd
+
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Filter selection
+- tapOn:
+    text: "Today"
+    index: 1
+
+- tapOn: "This Month"
+- tapOn: "Proceed"
+
+- waitForAnimationToEnd
+
+# Wait for filtered data to load
+- extendedWaitUntil:
+    visible: "This Month"
+    timeout: 5000
+
+# Get count BEFORE swipe
+- copyTextFrom:
+    text: "Total .* Transactions"
+- evalScript: ${output.beforeCount = maestro.copiedText.match(/\d+/)[0]}
+
+# Swipe again
+- swipe:
+    start: 50%, 82%
+    end: 50%, 50%
+- waitForAnimationToEnd
+# Get count AFTER swipe
+- copyTextFrom:
+    text: "Total .* Transactions"
+- evalScript: ${output.afterCount = maestro.copiedText.match(/\d+/)[0]}
+
+# Assertion (same count)
+- assertTrue: ${output.beforeCount == output.afterCount}
+
+# Screenshot
+- takeScreenshot: ../../screenshots/swipeforrefresh
+
+- runFlow:
+    file: ../../flows/teardown
