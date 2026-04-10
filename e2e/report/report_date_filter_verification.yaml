@@ -28,3 +28,125 @@ tags:
     commands:
       - runFlow:
           file: ../../flows/print_permission.yaml
+
+# close button verify
+- assertVisible:
+    text: Today
+    index: 1
+- tapOn:
+    text: Today
+    index: 1
+- assertVisible: Filter
+- assertVisible: Close Icon
+- tapOn: Close Icon
+- assertNotVisible: Filter
+
+# yesterday
+- tapOn:
+    text: Today
+    index: 1
+- assertVisible: Filter
+- assertVisible: Yesterday
+- tapOn: Yesterday
+- tapOn: Proceed
+- assertNotVisible: Filter
+- waitForAnimationToEnd
+- assertVisible:
+    text: Yesterday
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+# last 7 days
+- tapOn:
+    text: Yesterday
+    index: 1
+- assertVisible: Filter
+- assertVisible: Last 7 days
+- tapOn: Last 7 days
+- tapOn: Proceed
+- assertNotVisible: Filter
+- waitForAnimationToEnd
+- assertVisible:
+    text: Last 7 days
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+# this month
+- tapOn:
+    text: Last 7 days
+    index: 1
+- assertVisible: Filter
+- assertVisible: This Month
+- tapOn: This Month
+- tapOn: Proceed
+- assertNotVisible: Filter
+- waitForAnimationToEnd
+- assertVisible:
+    text: This Month
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+# last month
+- tapOn:
+    text: This Month
+    index: 1
+- assertVisible: Filter
+- assertVisible: Last Month
+- tapOn: Last Month
+- tapOn: Proceed
+- assertNotVisible: Filter
+- waitForAnimationToEnd
+- assertVisible:
+    text: Last Month
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
+
+# Date range
+- tapOn:
+    text: Last Month
+    index: 1
+- assertVisible: Filter
+- assertVisible: Date Range
+- tapOn: Date Range
+- tapOn: Proceed
+- assertVisible: Select Date Range
+- assertVisible: Close Icon
+- tapOn: Close Icon
+- assertVisible:
+    text: Date
+    index: 1
+- assertVisible: Date
+- tapOn: Date
+- tapOn: Proceed
+- assertVisible: Select Date Range
+- tapOn:
+    point: 49%,60%
+- tapOn:
+    point: 36%,65%
+- assertVisible: Set Date Range
+- tapOn: Set Date Range
+- assertVisible: Start Time
+- tapOn: 1 o'clock
+- tapOn: p.m.
+- assertVisible: 30 minutes
+- tapOn: 30 minutes
+- assertVisible: Set Start Time
+- tapOn: Set Start Time
+- tapOn: Set Start Time
+
+- assertNotVisible: Filter
+- waitForAnimationToEnd
+- assertVisible:
+    text: Date
+    index: 1
+- assertVisible:
+    text: No transactions yet
+    optional: true
