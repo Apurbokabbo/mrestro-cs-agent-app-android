@@ -1,0 +1,58 @@
+appId: com.cardselling.agent
+
+tags:
+  - regression
+  - p4
+  - functional
+
+---
+# Launch app with fresh state
+- launchApp:
+    clearState: true
+
+# Login Flow
+- runFlow:
+    file: ../../flows/login_helper.yaml
+    env:
+      MOBILE_NUMBER: ${MOBILE_NUMBER_1}
+      PASSWORD: ${PASSWORD_1}
+
+# Navigate to Report
+- assertVisible: "Report"
+- tapOn: "Report"
+
+# Handle print permission if shown|||||
+- runFlow:
+    when:
+      visible: "Allow CS Agent to find, connect to and determine the relative position of nearby devices?"
+    commands:
+      - runFlow:
+          file: ../../flows/print_permission.yaml
+
+- assertVisible:
+    text: All
+    index: 1
+- tapOn:
+    text: All
+    index: 1
+- assertVisible: Transactions Type
+- assertVisible: Filter
+- tapOn: Close Icon
+- assertNotVisible: Transactions Type
+
+- tapOn:
+    text: All
+    index: 1
+
+- tapOn: Bundle Purchase
+- tapOn: Proceed
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertNotVisible: Transactions Type
+- assertVisible:
+    text: Bundle Purchase
+    index: 1
+- tapOn:
+    text: Bundle Purchase
+    index: 1
+- assertNotVisible: Transactions Type
